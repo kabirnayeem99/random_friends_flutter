@@ -14,24 +14,22 @@ class RandomFriendsListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text("Random Friends"),
-      ),
-      child: Scaffold(body: _buildBody(context)),
+    return Scaffold(
+      appBar: const CupertinoNavigationBar(),
+      body: _buildBody(context),
     );
   }
 
   BlocProvider<RandomFriendsBloc> _buildBody(BuildContext context) {
     return BlocProvider(
-      create: (_) => RandomFriendsBloc()..add(RandomFriendsEvent()),
+      create: (_) => RandomFriendsBloc()..add(LoadRandomFriendListEvent()),
       child: BlocBuilder<RandomFriendsBloc, RandomFriendsState>(
         builder: (context, state) {
           if (state is LoadingRandomFriendsState) {
             return const CircularProgressIndicatorWidget();
           } else if (state is ErrorRandomFriendsState) {
             return Center(child: Text("Error: " + state.message));
-          } else if (state is LoadedRandomFriendsState) {
+          } else if (state is LoadedRandomFriendListState) {
             return RandomFriendsListWidget(userList: state.userList);
           } else {
             return Container();

@@ -26,8 +26,11 @@ class _RandomFriendsListWidgetState extends State<RandomFriendsListWidget> {
         final imageUrl = user.pictureUrl;
         final cell = user.cell;
         return InkWell(
-          onTap: () =>
-              Navigator.pushNamed(context, RandomFriendDetailsPage.routeName),
+          onTap: () => Navigator.restorablePushNamed(
+            context,
+            RandomFriendDetailsPage.routeName,
+            arguments: [user.id],
+          ),
           child: ListTile(
             title: Text(name),
             subtitle: Text(cell),

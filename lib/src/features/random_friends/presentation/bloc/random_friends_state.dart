@@ -8,11 +8,18 @@ class EmptyRandomFriendsState extends RandomFriendsState {}
 
 class LoadingRandomFriendsState extends RandomFriendsState {}
 
-class LoadedRandomFriendsState extends RandomFriendsState {
+class LoadedRandomFriendListState extends RandomFriendsState {
   late List<User> userList;
 
-  LoadedRandomFriendsState(this.userList);
+  LoadedRandomFriendListState(this.userList);
 }
+
+class LoadedFriendDetailState extends RandomFriendsState {
+  late User user;
+
+  LoadedFriendDetailState(this.user);
+}
+
 
 class ErrorRandomFriendsState extends RandomFriendsState {
   late String message;

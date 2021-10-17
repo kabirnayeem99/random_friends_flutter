@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:random_friends_flutter/src/features/random_friends/presentation/pages/random_friend_details_page.dart';
-import 'package:random_friends_flutter/src/features/random_friends/presentation/pages/random_friends_list_page.dart';
 
 import 'core/settings/settings_controller.dart';
+import 'features/random_friends/presentation/pages/random_friend_details_page.dart';
+import 'features/random_friends/presentation/pages/random_friends_list_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({
+class BaseApp extends StatelessWidget {
+  const BaseApp({
     Key? key,
     required this.settingsController,
   }) : super(key: key);
