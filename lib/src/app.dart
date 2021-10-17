@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:random_friends_flutter/src/features/random_friends/presentation/pages/random_friends_list_page.dart';
 
 import 'core/settings/settings_controller.dart';
 import 'core/settings/settings_view.dart';
-import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 
 /// The Widget that configures your application.
@@ -57,11 +57,11 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
+                  case RandomFriendsListPage.routeName:
+                    return  RandomFriendsListPage();
                   case SampleItemListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return  RandomFriendsListPage();
                 }
               },
             );

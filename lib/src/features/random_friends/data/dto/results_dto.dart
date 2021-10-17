@@ -1,14 +1,8 @@
-import 'dart:html';
-import 'dart:ui';
-
-import 'package:random_friends_flutter/src/features/random_friends/data/dto/id_dto.dart';
-
+import 'id_dto.dart';
 import 'name_dto.dart';
-import 'street_dto.dart';
 import 'dob_dto.dart';
 import 'location_dto.dart';
 import 'picture_dto.dart';
-import 'time_zone_dto.dart';
 import 'registered_dto.dart';
 import 'login_dto.dart';
 
