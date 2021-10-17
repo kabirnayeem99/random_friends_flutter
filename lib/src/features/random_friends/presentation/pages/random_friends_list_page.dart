@@ -22,7 +22,7 @@ class RandomFriendsListPage extends StatelessWidget {
 
   BlocProvider<RandomFriendsBloc> _buildBody(BuildContext context) {
     return BlocProvider(
-      create: (_) => RandomFriendsBloc(_getUserListUseCase, _initialState),
+      create: (_) => RandomFriendsBloc(),
       child: BlocBuilder<RandomFriendsBloc, RandomFriendsState>(
         builder: (context, state) {
           if (state is LoadingRandomFriendsState) {

@@ -35,7 +35,7 @@ class Location {
     _city = json['city'];
     _state = json['state'];
     _country = json['country'];
-    _postcode = json['postcode'];
+    _postcode = json['postcode'].toString();
     _coordinates = (json['coordinates'] != null
         ? Coordinates.fromJson(json['coordinates'])
         : null)!;

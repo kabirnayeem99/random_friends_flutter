@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:random_friends_flutter/src/core/utils.dart';
 import 'package:random_friends_flutter/src/features/random_friends/data/dto/random_user_response_dto.dart';
 
 abstract class RandomUserRemoteDataSource {
@@ -11,21 +12,22 @@ abstract class RandomUserRemoteDataSource {
 }
 
 class RandomUserRemoteDataSourceImpl implements RandomUserRemoteDataSource {
-  late final Dio _httpClient;
+  late final http.Client _httpClient;
 
   RandomUserRemoteDataSourceImpl() {
-    _httpClient = Dio();
+    _httpClient = http.Client();
   }
 
   @override
   Future<RandomUserResponseDto> getUsers() async =>
-      _getRandomUsers("https://randomuser.me/api/");
+      _getRandomUsers(Uri.https('www.randomuser.me', '/api/', {'q': '{http}'}));
 
-  Future<RandomUserResponseDto> _getRandomUsers(String url) async {
-    final response = await _httpClient.get(url);
+  Future<RandomUserResponseDto> _getRandomUsers(Uri uri) async {
+    final response = await _httpClient.get(uri);
 
     if (response.statusCode != null && response.statusCode == 200) {
-      return RandomUserResponseDto.fromJson(jsonDecode(response.data));
+      log(response.body.toString(), "RandomUserRemoteDataSource");
+      return RandomUserResponseDto.fromJson(json.decode(response.body));
     } else {
       throw Exception("Could not fetch the data");
     }
