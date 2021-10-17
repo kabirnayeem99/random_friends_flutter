@@ -1,8 +1,8 @@
 /// latitude : "-60.6244"
 /// longitude : "150.3285"
 
-class Coordinates {
-  Coordinates({
+class CoordinatesDto {
+  CoordinatesDto({
     required String latitude,
     required String longitude,
   }) {
@@ -10,7 +10,12 @@ class Coordinates {
     _longitude = longitude;
   }
 
-  Coordinates.fromJson(dynamic json) {
+  CoordinatesDto.empty() {
+    _latitude = "0.0";
+    _longitude = "0.0";
+  }
+
+  CoordinatesDto.fromJson(dynamic json) {
     _latitude = json['latitude'];
     _longitude = json['longitude'];
   }

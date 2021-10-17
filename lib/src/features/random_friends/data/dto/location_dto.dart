@@ -12,13 +12,13 @@ import 'time_zone_dto.dart';
 
 class Location {
   Location({
-    required Street street,
+    required StreetDto street,
     required String city,
     required String state,
     required String country,
     required String postcode,
-    required Coordinates coordinates,
-    required Timezone timezone,
+    required CoordinatesDto coordinates,
+    required TimezoneDto timezone,
   }) {
     _street = street;
     _city = city;
@@ -29,30 +29,40 @@ class Location {
     _timezone = timezone;
   }
 
+  Location.empty() {
+    _street = StreetDto.empty();
+    _city = "";
+    _state = "";
+    _country = "";
+    _postcode = "";
+    _coordinates = CoordinatesDto.empty();
+    _timezone = TimezoneDto.empty();
+  }
+
   Location.fromJson(dynamic json) {
     _street =
-        (json['street'] != null ? Street.fromJson(json['street']) : null)!;
+        (json['street'] != null ? StreetDto.fromJson(json['street']) : null)!;
     _city = json['city'];
     _state = json['state'];
     _country = json['country'];
     _postcode = json['postcode'].toString();
     _coordinates = (json['coordinates'] != null
-        ? Coordinates.fromJson(json['coordinates'])
+        ? CoordinatesDto.fromJson(json['coordinates'])
         : null)!;
     _timezone = (json['timezone'] != null
-        ? Timezone.fromJson(json['timezone'])
+        ? TimezoneDto.fromJson(json['timezone'])
         : null)!;
   }
 
-  late Street _street;
+  late StreetDto _street;
   late String _city;
   late String _state;
   late String _country;
   late String _postcode;
-  late Coordinates _coordinates;
-  late Timezone _timezone;
+  late CoordinatesDto _coordinates;
+  late TimezoneDto _timezone;
 
-  Street get street => _street;
+  StreetDto get street => _street;
 
   String get city => _city;
 
@@ -62,9 +72,9 @@ class Location {
 
   String get postcode => _postcode;
 
-  Coordinates get coordinates => _coordinates;
+  CoordinatesDto get coordinates => _coordinates;
 
-  Timezone get timezone => _timezone;
+  TimezoneDto get timezone => _timezone;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

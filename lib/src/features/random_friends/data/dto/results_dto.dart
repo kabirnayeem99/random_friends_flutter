@@ -1,10 +1,10 @@
-import 'id_dto.dart';
-import 'name_dto.dart';
 import 'dob_dto.dart';
+import 'id_dto.dart';
 import 'location_dto.dart';
+import 'login_dto.dart';
+import 'name_dto.dart';
 import 'picture_dto.dart';
 import 'registered_dto.dart';
-import 'login_dto.dart';
 
 /// gender : "female"
 /// name : {"title":"Miss","first":"Ariane","last":"Addy"}
@@ -19,10 +19,10 @@ import 'login_dto.dart';
 /// picture : {"large":"https://randomuser.me/api/portraits/women/82.jpg","medium":"https://randomuser.me/api/portraits/med/women/82.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/82.jpg"}
 /// nat : "CA"
 
-class Results {
-  Results({
+class UserDto {
+  UserDto({
     required String gender,
-    required Name name,
+    required NameDto name,
     required Location location,
     required String email,
     required Login login,
@@ -48,28 +48,31 @@ class Results {
     _nat = nat;
   }
 
-  Results.fromJson(dynamic json) {
+  UserDto.fromJson(dynamic json) {
     _gender = json['gender'];
-    _name = (json['name'] != null ? Name.fromJson(json['name']) : null)!;
-    _location = (json['location'] != null
+    _name =
+        json['name'] != null ? NameDto.fromJson(json['name']) : NameDto.empty();
+    _location = json['location'] != null
         ? Location.fromJson(json['location'])
-        : null)!;
+        : Location.empty();
     _email = json['email'];
-    _login = (json['login'] != null ? Login.fromJson(json['login']) : null)!;
-    _dob = (json['dob'] != null ? Dob.fromJson(json['dob']) : null)!;
-    _registered = (json['registered'] != null
+    _login =
+        json['login'] != null ? Login.fromJson(json['login']) : Login.empty();
+    _dob = json['dob'] != null ? Dob.fromJson(json['dob']) : Dob.empty();
+    _registered = json['registered'] != null
         ? Registered.fromJson(json['registered'])
-        : null)!;
+        : Registered.empty();
     _phone = json['phone'];
     _cell = json['cell'];
-    _id = (json['id'] != null ? Id.fromJson(json['id']) : null)!;
-    _picture =
-        (json['picture'] != null ? Picture.fromJson(json['picture']) : null)!;
+    _id = json['id'] != null ? Id.fromJson(json['id']) : Id.generate();
+    _picture = json['picture'] != null
+        ? Picture.fromJson(json['picture'])
+        : Picture.empty();
     _nat = json['nat'];
   }
 
   late String _gender;
-  late Name _name;
+  late NameDto _name;
   late Location _location;
   late String _email;
   late Login _login;
@@ -83,7 +86,7 @@ class Results {
 
   String get gender => _gender;
 
-  Name get name => _name;
+  NameDto get name => _name;
 
   Location get location => _location;
 
@@ -120,5 +123,11 @@ class Results {
     map['picture'] = _picture.toJson();
     map['nat'] = _nat;
     return map;
+  }
+
+  @override
+  String toString() {
+    final string = "first name " + name.first + "email" + email;
+    return string;
   }
 }

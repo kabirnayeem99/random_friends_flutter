@@ -2,10 +2,17 @@ class User {
   String id = "";
   String pictureUrl = "";
   String name = "";
+  String cell = "";
 
-  User(
-    this.id,
-    this.pictureUrl,
-    this.name,
-  );
+  User({
+    required this.id,
+    required this.pictureUrl,
+    required this.name,
+    required this.cell,
+  });
+
+  @override
+  String toString() {
+    return "$id $pictureUrl $name";
+  }
 }

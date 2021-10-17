@@ -26,6 +26,16 @@ class Login {
     _sha256 = sha256;
   }
 
+  Login.empty(){
+    _uuid = "";
+    _username = "";
+    _password = "";
+    _salt = "";
+    _md5 = "";
+    _sha1 = "";
+    _sha256 = "";
+  }
+
   Login.fromJson(dynamic json) {
     _uuid = json['uuid'];
     _username = json['username'];

@@ -1,8 +1,8 @@
 /// number : 1512
 /// name : "Duke St"
 
-class Street {
-  Street({
+class StreetDto {
+  StreetDto({
     required int number,
     required String name,
   }) {
@@ -10,7 +10,12 @@ class Street {
     _name = name;
   }
 
-  Street.fromJson(dynamic json) {
+  StreetDto.empty() {
+    _number = 0;
+    _name = "";
+  }
+
+  StreetDto.fromJson(dynamic json) {
     _number = json['number'];
     _name = json['name'];
   }

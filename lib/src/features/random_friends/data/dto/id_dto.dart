@@ -10,6 +10,11 @@ class Id {
     _value = value;
   }
 
+  Id.generate() {
+    _name = DateTime.now().toString();
+    _value = DateTime.now().millisecondsSinceEpoch.toString();
+  }
+
   Id.fromJson(dynamic json) {
     _name = json['name'];
     _value = json['value'];

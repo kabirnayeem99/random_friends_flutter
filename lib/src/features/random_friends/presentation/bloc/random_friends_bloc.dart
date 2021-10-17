@@ -8,22 +8,24 @@ import 'package:random_friends_flutter/src/features/random_friends/domain/use_ca
 import 'package:random_friends_flutter/src/features/random_friends/presentation/bloc/random_friends_event.dart';
 import 'package:random_friends_flutter/src/features/random_friends/presentation/bloc/random_friends_state.dart';
 
+const String tag = "RandomFriendsBloc";
+
 class RandomFriendsBloc extends Bloc<RandomFriendsEvent, RandomFriendsState> {
   final GetUserListUseCase _getUserListUseCase = GetUserListUseCase();
 
-  RandomFriendsBloc() : super(EmptyRandomFriendsState()) {
-    log("check if log working or not", "RandomFriendsBloc");
-    _getUserListUseCase.call(NoParams());
-  }
+  RandomFriendsBloc() : super(EmptyRandomFriendsState());
 
   @override
   Stream<RandomFriendsState> mapEventToState(RandomFriendsEvent event) async* {
+    log("mapEventToState is called on $event", tag);
+    yield LoadingRandomFriendsState();
     final failureOrTrivia = await _getUserListUseCase.call(NoParams());
     yield* _eitherLoadedOrErrorState(failureOrTrivia);
   }
 
   Stream<RandomFriendsState> _eitherLoadedOrErrorState(
       Either<List<User>, Failure> failureOrTrivia) async* {
+    log("_eitherLoadedOrErrorState is called on ", tag);
     yield failureOrTrivia.fold(
       (data) => LoadedRandomFriendsState(data),
       (error) => ErrorRandomFriendsState(error.message),

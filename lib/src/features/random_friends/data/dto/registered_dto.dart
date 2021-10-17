@@ -15,6 +15,12 @@ class Registered {
     _age = json['age'];
   }
 
+
+  Registered.empty() {
+    _date = "";
+    _age = 0;
+  }
+
   late String _date;
   late int _age;
 

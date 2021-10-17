@@ -19,6 +19,12 @@ class Picture {
     _thumbnail = json['thumbnail'];
   }
 
+  Picture.empty() {
+    _large = "https://picsum.photos/id/237/500/500";
+    _medium = "https://picsum.photos/id/237/250/250";
+    _thumbnail = "https://picsum.photos/id/237/100/100";
+  }
+
   late String _large;
   late String _medium;
   late String _thumbnail;

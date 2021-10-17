@@ -5,7 +5,7 @@ import 'package:random_friends_flutter/src/core/utils.dart';
 import 'package:random_friends_flutter/src/features/random_friends/data/repositories/random_user_repository_impl.dart';
 import 'package:random_friends_flutter/src/features/random_friends/domain/entities/user.dart';
 
-const String TAG = "GetUserListUseCase";
+const String tag = "GetUserListUseCase";
 
 class GetUserListUseCase implements UseCase<User, NoParams> {
   final _repo = RandomUserRepositoryImpl();
@@ -13,7 +13,7 @@ class GetUserListUseCase implements UseCase<User, NoParams> {
   @override
   Future<Either<List<User>, Failure>> call(NoParams params) async {
     final failureOrData = await _repo.getRandomUsers();
-    log("loading data in GetUserListUseCase" + failureOrData.toString(), TAG);
+    log("loading data in GetUserListUseCase" + failureOrData.toString(), tag);
     return failureOrData;
   }
 }

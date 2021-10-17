@@ -24,9 +24,10 @@ class RandomUserRepositoryImpl implements RandomUserRepository {
       List<User> userList = [];
       for (var userDto in response.results) {
         var user = User(
-          {userList.length + 1}.toString(),
-          userDto.picture.large,
-          userDto.name.first + " " + userDto.name.last,
+          id: {userList.length + 1}.toString(),
+          pictureUrl: userDto.picture.large,
+          name: userDto.name.first + " " + userDto.name.last,
+          cell: userDto.cell,
         );
         userList.add(user);
       }

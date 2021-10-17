@@ -2,18 +2,20 @@
 /// first : "Ariane"
 /// last : "Addy"
 
-class Name {
-  Name({
-    required String title,
-    required String first,
-    required String last,
-  }) {
+class NameDto {
+  NameDto(title, first, last) {
     _title = title;
     _first = first;
     _last = last;
   }
 
-  Name.fromJson(dynamic json) {
+  NameDto.empty() {
+    _title = "";
+    _first = "";
+    _last = "";
+  }
+
+  NameDto.fromJson(dynamic json) {
     _title = json['title'];
     _first = json['first'];
     _last = json['last'];

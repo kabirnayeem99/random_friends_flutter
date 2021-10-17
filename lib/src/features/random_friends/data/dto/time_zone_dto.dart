@@ -1,8 +1,8 @@
 // offset : "+10:00"
 /// description : "Eastern Australia, Guam, Vladivostok"
 
-class Timezone {
-  Timezone({
+class TimezoneDto {
+  TimezoneDto({
     required String offset,
     required String description,
   }) {
@@ -10,7 +10,13 @@ class Timezone {
     _description = description;
   }
 
-  Timezone.fromJson(dynamic json) {
+
+  TimezoneDto.empty() {
+    _offset = "";
+    _description = "";
+  }
+
+  TimezoneDto.fromJson(dynamic json) {
     _offset = json['offset'];
     _description = json['description'];
   }

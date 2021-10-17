@@ -10,6 +10,11 @@ class Dob {
     _age = age;
   }
 
+  Dob.empty() {
+    _date = "";
+    _age = 0;
+  }
+
   Dob.fromJson(dynamic json) {
     _date = json['date'];
     _age = json['age'];
